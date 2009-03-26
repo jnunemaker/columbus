@@ -11,8 +11,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'columbus'
 
 class Test::Unit::TestCase
-end
-
-def fixture_file(file)
-  File.read(File.join(File.dirname(__FILE__), 'fixtures', file))
+  def fixture_file(file)
+    File.read(File.join(File.dirname(__FILE__), 'fixtures', file))
+  end
 end
