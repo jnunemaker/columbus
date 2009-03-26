@@ -33,14 +33,15 @@ class Columbus
     end
   end
   
-  def link_to_feed(element)
-    link = Link.new(url, element.attributes['href'], element.attributes['title'])
-    Feed.new(link.absolute_url, link.clean_title)
-  end
-  
-  def parse_links(html)
-    Hpricot(html).search('link').select do |link|
-      link.attributes['type'] =~ /application\/(rss|atom)\+xml/i
+  private  
+    def link_to_feed(element)
+      link = Link.new(url, element.attributes['href'], element.attributes['title'])
+      Feed.new(link.absolute_url, link.clean_title)
     end
-  end
+  
+    def parse_links(html)
+      Hpricot(html).search('link').select do |link|
+        link.attributes['type'] =~ /application\/(rss|atom)\+xml/i
+      end
+    end
 end
