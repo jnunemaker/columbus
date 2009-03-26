@@ -4,10 +4,10 @@ class Columbus
     
     def initialize(*args)
       super(*args)
-      determine_feed_endpoint!
+      determine_feed_endpoint
     end
     
-    def determine_feed_endpoint!
+    def determine_feed_endpoint
       response = RedirectFollower.new(url).resolve
       self.url = response.url
       self.body = response.body

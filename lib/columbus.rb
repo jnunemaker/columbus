@@ -17,8 +17,8 @@ class Columbus
   
   def primary
     @primary ||= begin
-      response     = RedirectFollower.new(url).resolve
-      @url     = response.url
+      response = RedirectFollower.new(url).resolve
+      @url = response.url
       if hpricot_link = parse_links(response.body)[0]
         link_to_feed(hpricot_link)
       end

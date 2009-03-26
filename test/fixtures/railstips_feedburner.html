@@ -1,0 +1,1397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/atom10full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds2.feedburner.com/~d/styles/itemcontent.css"?><feed xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" xml:lang="en-US">
+  <title>RailsTips - Home</title>
+  <id>tag:railstips.org,2009:mephisto/</id>
+  <generator version="0.8.0" uri="http://mephistoblog.com">Mephisto Drax</generator>
+  
+  <link href="http://railstips.org/" rel="alternate" type="text/html" />
+  <updated>2009-03-25T06:28:02Z</updated>
+  <geo:lat>41.650672</geo:lat><geo:long>-86.160028</geo:long><link rel="self" href="http://feeds2.feedburner.com/railstips" type="application/atom+xml" /><feedburner:emailServiceId>railstips</feedburner:emailServiceId><feedburner:feedburnerHostname>http://feedburner.google.com</feedburner:feedburnerHostname><entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-03-25:8938</id>
+    <published>2009-03-25T11:00:00Z</published>
+    <updated>2009-03-25T06:28:02Z</updated>
+    <category term="Gems" />
+    <category term="Testing" />
+    <category term="api" />
+    <category term="gems" />
+    <category term="google" />
+    <category term="testing" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/ajimswwDgJ0/building-api-wrapping-gems-could-not-get-much-easier" rel="alternate" type="text/html" />
+    <title>Building API Wrapping Gems Could Not Get Much Easier</title>
+<summary type="html">&lt;p&gt;In which I show how easy it is now to create ruby gems that wrap APIs, using Google Weather as an example.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I show how easy it is now to create ruby gems that wrap APIs, using Google Weather as an example.&lt;/p&gt;
+&lt;p&gt;Google has a weather api that is dead simple to use. Just discovered that tonight so I whipped together a wrapper using HTTParty. I decided to try out &lt;a href="http://github.com/technicalpickles/jeweler/tree/master"&gt;Jeweler&lt;/a&gt;, a project by &lt;a href="http://technicalpickles.com/"&gt;Josh Nichols&lt;/a&gt;, that makes creating gems a snap and it delivered. I used shoulda and fakeweb for the tests. Holy crap has making a gem that wraps a web service become really easy.&lt;/p&gt;
+
+
+	&lt;h2&gt;The New Way&lt;/h2&gt;
+
+
+	&lt;ol&gt;
+	&lt;li&gt;jeweler google-weather —shoulda —create-repo&lt;/li&gt;
+		&lt;li&gt;%w(matchy fakeweb).each { |x| require x } (in your test_helper)&lt;/li&gt;
+		&lt;li&gt;require ‘httparty’&lt;/li&gt;
+		&lt;li&gt;Add some code and tests&lt;/li&gt;
+		&lt;li&gt;rake version:minor:bump&lt;/li&gt;
+		&lt;li&gt;rake gemspec&lt;/li&gt;
+		&lt;li&gt;git push origin master&lt;/li&gt;
+		&lt;li&gt;blog&lt;/li&gt;
+	&lt;/ol&gt;
+
+
+	&lt;p&gt;I did all of these in &lt;strong&gt;about an hour or two&lt;/strong&gt; tonight.&lt;/p&gt;
+
+
+	&lt;h2&gt;The Old Way&lt;/h2&gt;
+
+
+	&lt;ol&gt;
+	&lt;li&gt;Create a bunch of files and directories and make a bunch of decisions&lt;/li&gt;
+		&lt;li&gt;mock and stub all net/http stuff&lt;/li&gt;
+		&lt;li&gt;net/http and rexml (or hpricot once that came along)&lt;/li&gt;
+		&lt;li&gt;Add some code and maybe some tests&lt;/li&gt;
+		&lt;li&gt;Add a version&lt;/li&gt;
+		&lt;li&gt;Figure out how to build a gemspec&lt;/li&gt;
+		&lt;li&gt;svn commit your files&lt;/li&gt;
+		&lt;li&gt;Request project to be created on rubyforge&lt;/li&gt;
+		&lt;li&gt;Wait a few days&lt;/li&gt;
+		&lt;li&gt;Project approved, release files, blog&lt;/li&gt;
+	&lt;/ol&gt;
+
+
+	&lt;p&gt;And it would &lt;strong&gt;take a few days&lt;/strong&gt; from first code scratched to gem released. My how times are a changing.&lt;/p&gt;
+
+
+	&lt;h2&gt;Stuff You Can Learn From This Gem&lt;/h2&gt;
+
+
+	&lt;p&gt;At any rate, the &lt;a href="http://github.com/jnunemaker/google-weather/tree/master"&gt;GoogleWeather gem&lt;/a&gt; I just created is a really simple example of how to use:&lt;/p&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://github.com/technicalpickles/jeweler/tree/master"&gt;jeweler&lt;/a&gt; to create and manage a gem&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://github.com/jnunemaker/httparty/tree/master"&gt;httparty&lt;/a&gt; to pwn an &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://github.com/thoughtbot/shoulda/tree/master"&gt;shoulda&lt;/a&gt; to test the gem&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://fakeweb.rubyforge.org/"&gt;fakeweb&lt;/a&gt; to make sure your tests aren’t making real web requests&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://github.com/jeremymcanally/matchy/tree/master"&gt;matchy&lt;/a&gt; for some syntactical sugar&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;p&gt;If you want to learn any of those things, &lt;a href="http://github.com/jnunemaker/google-weather/tree/master"&gt;poke around in the code&lt;/a&gt; a bit and you should be good to go. Also, if you want a really easy way to get weather information, this gem &lt;a href="http://github.com/jnunemaker/google-weather/blob/1affe3d4da62b9cf22b996a6418ead63faeda4da/examples/forecast.rb"&gt;makes that possible&lt;/a&gt;.&lt;/p&gt;
+
+
+	&lt;p&gt;Sorry I didn’t give it some fancy name like &lt;a href="http://railstips.org/2008/7/29/it-s-an-httparty-and-everyone-is-invited"&gt;HTTParty&lt;/a&gt; or &lt;a href="http://railstips.org/2008/11/17/happymapper-making-xml-fun-again"&gt;HappyMapper&lt;/a&gt;. Maybe I need to make another gem that spits out fancy names. After all, naming the project is the only thing left that is hard. ;)&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=ajimswwDgJ0:RaH3HhT_8W0:yIl2AUoC8zA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=ajimswwDgJ0:RaH3HhT_8W0:dnMXMwOfBR0"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=dnMXMwOfBR0" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=ajimswwDgJ0:RaH3HhT_8W0:7Q72WNTAKBA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/ajimswwDgJ0" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/3/25/building-api-wrapping-gems-could-not-get-much-easier</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-03-24:8937</id>
+    <published>2009-03-24T19:50:00Z</published>
+    <updated>2009-03-24T19:50:58Z</updated>
+    <category term="Gems" />
+    <category term="Testing" />
+    <category term="matchy" />
+    <category term="testing" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/Rkf-lmi0BXc/custom-matchers-for-matchy" rel="alternate" type="text/html" />
+    <title>Custom Matchers for Matchy</title>
+<summary type="html">&lt;p&gt;In which I show all the dirty secrets of custom matchers using matchy.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I show all the dirty secrets of custom matchers using matchy.&lt;/p&gt;
+&lt;p&gt;I’ve been using Shoulda for &lt;a href="http://railstips.org/2009/2/21/shoulda-looked-at-it-sooner"&gt;around a month now&lt;/a&gt; and, thus far, the only thing I have missed is RSpec’s matchers (ie: foo.should == 2). Enter stage right Jeremy McAnally’s project &lt;a href="http://github.com/jeremymcanally/matchy/tree/master"&gt;matchy&lt;/a&gt;. Matchy provides “RSpec-esque matchers for Test::Unit”.&lt;/p&gt;
+
+
+	&lt;p&gt;Matchy met the immediate need of liking the should and should_not RSpec syntax, but, originally, it was not built with support for custom matchers. A little over a month ago, Matthias Hennemeyer abstracted the ability to build matchers and created a method called def_matcher to create your own custom matchers.&lt;/p&gt;
+
+
+	&lt;p&gt;Excited, I installed the new version and went to town, only to end up confused. def_matcher only seemed to work from inside an instance method. Most likely I was just too stupid to use what he created, but I figured if I was too stupid there were probably others. Instead of giving up, I hacked a version into my project of what Matthias created that I called custom_matcher and made it work more like a class method.&lt;/p&gt;
+
+
+	&lt;p&gt;Normally, hacking what I need into my project is where it stops, but this time I decided to give back and actually &lt;a href="http:/github.com/jnunemaker/matchy/"&gt;fork matchy&lt;/a&gt; and apply my changes. Today while waiting on some stuff from a client, I took the time to actually add my changes, test them and push them upstream to Github.&lt;/p&gt;
+
+
+	&lt;p&gt;So enough boring explanation, eh? How do the changes work I’m sure you are wondering. For each example, I’ll show an example with and without the custom_matcher stuff so you can see the &lt;span class="caps"&gt;API&lt;/span&gt; difference.&lt;/p&gt;
+
+
+	&lt;h2&gt;Testing Nil&lt;/h2&gt;
+
+
+	&lt;p&gt;The first custom matcher that I added was straight up ganked from RSpec and is named be_nil. Nothing fancy, but I kind of like it.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class ActiveSupport::TestCase
+  custom_matcher :be_nil do |receiver, matcher, args|
+    matcher.positive_failure_message = "Expected #{receiver} to be nil but it wasn't" 
+    matcher.negative_failure_message = "Expected #{receiver} not to be nil but it was" 
+    receiver.nil?
+  end
+end
+
+class ItemTest &amp;lt; ActiveSupport::TestCase    
+  def test_something
+    item = Item.new
+    # without custom matcher
+    item.title.should be(nil)
+
+    # with custom matcher
+    item.title.should be_nil
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;So the difference is slight, right? I’m all kinds of lazy so the difference of typing be_nil versus be(nil) is worth it. One underscore is easier than two parenthesis. Heck, underscore is even easier to spell as a word, but that is probably irrelevant.&lt;/p&gt;
+
+
+	&lt;h2&gt;Custom Matcher Syntax&lt;/h2&gt;
+
+
+	&lt;p&gt;Before I go on to more examples, let’s make sure you understand what was happening above. The basic syntax of a custom_matcher is:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;custom_matcher :matcher_name do |receiver, matcher, args|
+  # matcher body
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;:matcher_name is pretty obvious but what is the purpose of the receiver, matcher and args in the block? &lt;strong&gt;Receiver is the object that the modal (should, should_not) is being called on&lt;/strong&gt;. In the example above item.title would be the available as the receiver in the custom_matcher block.&lt;/p&gt;
+
+
+	&lt;p&gt;Matcher has a couple purposes. First, it &lt;strong&gt;allows you to change the failure messages&lt;/strong&gt;, both positive (should) and negative (should not). If you say item.title.should be_nil and item.title is not nil, the failure message will be equal to the positive_failure_message. Likewise, if you say item.title.should_not be_nil and item.title is nil, the negative_failure_message is what you’ll see. &lt;strong&gt;Matcher also allows some cool chaining of messages onto the matcher&lt;/strong&gt; and I’ll show that in a bit.&lt;/p&gt;
+
+
+	&lt;p&gt;Finally, &lt;strong&gt;args is equal to the arguments (if any) that are passed into the matcher&lt;/strong&gt; method. This allows for some really cool test &lt;span class="caps"&gt;API&lt;/span&gt; tweaks.&lt;/p&gt;
+
+
+	&lt;p&gt;Let’s use that new knowledge of matcher and args to create a matcher that takes advantage of both, and hopefully shows the power of custom matchers. In this example, we’ll create a custom matcher :have that allows testing the size of an array returned by a method on the receiver.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class Test::Unit::TestCase
+  custom_matcher :have do |receiver, matcher, args|
+    count = args[0]
+    something = matcher.chained_messages[0].name
+    actual = receiver.send(something).size
+    actual == count
+  end
+end
+
+class MoreAdvancedTest &amp;lt; Test::Unit::TestCase
+  class Item
+    def tags
+      %w(foo bar baz)
+    end
+  end
+
+  def test_item_has_tags
+    item = Item.new
+    # without custom matcher
+    item.tags.size.should == 3
+
+    # with custom matcher
+    item.should have(3).tags # pass
+    item.should have(2).tags # fail
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;In the custom_matcher above, matcher.chained_messages&lt;sup&gt;&lt;a href="#fn0"&gt;0&lt;/a&gt;&lt;/sup&gt;.name is equal to “tags”. So basically the :have custom matcher gets the chained method (tags), calls it on the receiver (item) and then makes sure that the result size (item.tags.size) is equal to the argument passed into :have (3 and 2).&lt;/p&gt;
+
+
+	&lt;p&gt;Maybe a more simple example of passing in arguments could be the following have_error_on matcher:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class ActiveSupport::TestCase
+  custom_matcher :have_error_on do |receiver, matcher, args|
+    attribute = args[0]
+
+    receiver.valid?
+    receiver.errors.on(attribute).should_not be(nil)
+  end
+end
+
+class Item &amp;lt; ActiveRecord::Base
+  validate_presence_of :title
+end
+
+class ItemTest &amp;lt; ActiveSupport::TestCase 
+  def test_title_is_required
+    item = Item.new
+
+    # without custom matcher
+    item.valid?
+    item.errors.on(:title).should_not be(nil) # or something like this
+
+    # with custom matcher
+    item.should have_error_on(:title)
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Hopefully these examples are good enough to get an idea of what is going on. The basic idea is that you can create custom matcher methods, which can call methods on the receiver, customize the error messages, and even accept arguments. Again, the internals of the matcher building were written by Matthias. All I did was put it together in a way that made sense and seemed easier to me (and hopefully others).&lt;/p&gt;
+
+
+	&lt;p&gt;Jeremy may or may not pull my changes into his official matchy repository, so if you want to use them now, revel in the power of Github by installing my version gem (sudo gem install jnunemaker-matchy). Then be sure to require the gem in your test_helper. Here is an example &lt;a href="http://gist.github.com/84320"&gt;Rails test_helper&lt;/a&gt; with a few matchers already in it.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=Rkf-lmi0BXc:MCaj7ccFJAQ:yIl2AUoC8zA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=Rkf-lmi0BXc:MCaj7ccFJAQ:dnMXMwOfBR0"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=dnMXMwOfBR0" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=Rkf-lmi0BXc:MCaj7ccFJAQ:7Q72WNTAKBA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/Rkf-lmi0BXc" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/3/24/custom-matchers-for-matchy</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-03-23:8934</id>
+    <published>2009-03-23T15:38:00Z</published>
+    <updated>2009-03-23T15:41:31Z</updated>
+    <category term="Gems" />
+    <category term="Specifically Ruby" />
+    <category term="httparty" />
+    <category term="xml" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/pNHW3yphdDI/httparty-example-mymilemarker-com" rel="alternate" type="text/html" />
+    <title>HTTParty Example: MyMileMarker.com</title>
+<summary type="html">&lt;p&gt;In which I show an example of how to use HTTParty to consume the MyMileMarker undocumented &lt;span class="caps"&gt;API&lt;/span&gt;.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I show an example of how to use HTTParty to consume the MyMileMarker undocumented &lt;span class="caps"&gt;API&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;One of the apps I help keep tabs on is &lt;a href="http://mymilemarker.com"&gt;MyMileMarker.com&lt;/a&gt;, which I believe I’ve mentioned here before. MyMileMarker was built with respond_to xml in most parts, so it has an undocumented, but functioning &lt;span class="caps"&gt;API&lt;/span&gt;.&lt;/p&gt;
+
+
+	&lt;p&gt;I took a few minutes last night to use HTTParty to build a simple wrapper for the &lt;span class="caps"&gt;API&lt;/span&gt;. It is nothing fancy, but I figured I would post it here as it shows how to use HTTParty to consume a pretty stock Rails &lt;span class="caps"&gt;API&lt;/span&gt;.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'rubygems'
+gem 'httparty', '&amp;gt;= 0.3.1'
+require 'httparty'
+
+module MyMileMarker
+  class Client
+    include HTTParty
+
+    def initialize(email, password)
+      @email, @password = email, password
+    end
+
+    def get(path, options={})
+      options.merge!({:basic_auth =&amp;gt; {:username =&amp;gt; @email, :password =&amp;gt; @password}})
+      self.class.get("http://mymilemarker.com#{path}", options)
+    end
+
+    def vehicles
+      get('/vehicles.xml')['vehicles']
+    end
+
+    def vehicle(vehicle_id_or_slug)
+      Vehicle.new(self, vehicle_id_or_slug).info
+    end
+
+    def histories(vehicle_id_or_slug)
+      Vehicle.new(self, vehicle_id_or_slug).histories
+    end
+
+    def fuel_economy(vehicle_id_or_slug)
+      Vehicle.new(self, vehicle_id_or_slug).fuel_economy
+    end
+
+    def mileage(vehicle_id_or_slug)
+      Vehicle.new(self, vehicle_id_or_slug).mileage
+    end
+  end
+
+  class Vehicle
+    attr_reader :identifier, :client
+
+    def initialize(client, identifier)
+      @client, @identifier = client, identifier
+    end
+
+    def info
+      client.get("/vehicles/#{identifier}.xml")['vehicle']
+    end
+
+    def histories
+      client.get("/vehicles/#{identifier}/histories.xml?all=true")['histories']
+    end
+
+    def fuel_economy
+      client.get("/vehicles/#{identifier}/reports/fuel_economy.xml")['chart']['point']
+    end
+
+    def mileage
+      client.get("/vehicles/#{identifier}/reports/mileage.xml")['chart']['point']
+    end
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Basically, you just create a new client and you can request your information like so:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;client = MyMileMarker::Client.new('email@domain.com', 'secret')
+
+p client.vehicles
+p '*'*50
+p client.vehicle('ford-mustang')
+p '*'*50
+p client.histories('ford-mustang')
+p '*'*50
+p client.fuel_economy('ford-mustang')
+p '*'*50
+p client.mileage('ford-mustang')
+p '*'*50&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;If you don’t want to repeat the vehicle’s slug over and over, you can also use it like this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;client = MyMileMarker::Client.new('email@domain.com', 'secret')
+vehicle = MyMileMarker::Vehicle.new(client, 'ford-mustang')
+
+p vehicle.histories
+p '*'*50
+p vehicle.fuel_economy
+p '*'*50
+p vehicle.mileage&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;I &lt;a href="http://gist.github.com/83431"&gt;gist’d the full file&lt;/a&gt; for those interested. I have several things sitting in the HTTParty fork queue that I’m hoping to get to soon. I’ll update here with the new features when I do. If you are using HTTParty for anything, let me know in the comments below (include some code or a link to a gist if you can). I’m always curious how people are using stuff I’ve made.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=pNHW3yphdDI:kNY487i2i2U:yIl2AUoC8zA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=pNHW3yphdDI:kNY487i2i2U:dnMXMwOfBR0"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=dnMXMwOfBR0" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=pNHW3yphdDI:kNY487i2i2U:7Q72WNTAKBA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/pNHW3yphdDI" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/3/23/httparty-example-mymilemarker-com</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-03-12:8930</id>
+    <published>2009-03-12T18:34:00Z</published>
+    <updated>2009-03-12T18:36:00Z</updated>
+    <category term="contributing" />
+    <category term="thoughts" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/dH0YUzKSDYs/3-simple-guidelines-for-contributing" rel="alternate" type="text/html" />
+    <title>3 Simple Guidelines for Contributing</title>
+<summary type="html">&lt;p&gt;In which I describe simple guidelines for contributing to other people’s open source projects.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I describe simple guidelines for contributing to other people’s open source projects.&lt;/p&gt;
+&lt;p&gt;So what drives someone to contribute to an open source project? 95% of the contributions I have received on my various projects are from people who are trying to make one specific thing work for something they are doing.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;strong&gt;I think it is awesome&lt;/strong&gt; that people take the time to contribute, but, to be honest, a lot of the contributions are no help. They are &lt;strong&gt;often very specific and rarely are tested&lt;/strong&gt; (other than manually by the contributer). Even worse yet, some change existing functionality but add no tests or explanation as to why and then expect me to just pull it in and roll on with life.&lt;/p&gt;
+
+
+	&lt;h2&gt;1. Explain “why” not “how”&lt;/h2&gt;
+
+
+	&lt;p&gt;I’m amazed at some of the commit messages I see in contributions. People will add a check to see if something is blank? and then make the commit message “Checking if thing was blank?”. Why do we need to check if something is blank? That is what is important. If I want to know how you did it, I’ll look at the code. Believe it or not, but I can read code. I can’t, however, read your mind like &lt;a href="http://heroeswiki.com/Matt_Parkman"&gt;Matt Parkman&lt;/a&gt;. &lt;strong&gt;Next time you craft your commit message, explain why you did something, now how.&lt;/strong&gt;&lt;/p&gt;
+
+
+	&lt;h2&gt;2. Test it&lt;/h2&gt;
+
+
+	&lt;p&gt;This goes a couple ways. If something was failing during “real” use of the code, but no tests were failing, don’t just fix the problem and send a pull request. Add a test (or spec) that shows what was failing and then add the code to fix the problem. &lt;strong&gt;If you don’t add the regression test, chances are that fix you added will break in a future release.&lt;/strong&gt; If the project maintainer has no tests in their project, either don’t use the project or add tests. Adding tests just may inspire the maintainer to learn and fill out the rest of the tests.&lt;/p&gt;
+
+
+	&lt;p&gt;If you don’t know how to test the thing you are fixing, &lt;strong&gt;ask around&lt;/strong&gt;. I know I’d be more than happy to help anyone who is wanting to contribute to one of my projects, but is unsure how to test something. Much happier than receiving another un-tested fix that could just be someone’s opinion instead of an actual problem.&lt;/p&gt;
+
+
+	&lt;h2&gt;3. Make sure it applies cleanly&lt;/h2&gt;
+
+
+	&lt;p&gt;While you were working on your well-explained, tested contribution, things may have changed upstream. Be sure to rebase or merge in the latest changes. If your contribution is well-explained, tested and merges cleanly, &lt;strong&gt;it will only take the maintainer a few minutes to review it, accept it, and release a new version&lt;/strong&gt;. If it doesn’t apply cleanly, and the maintainer is like me, the commit, no matter how awesome, will most likely sit at the bus stop waiting for a bus that will never come.&lt;/p&gt;
+
+
+	&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+
+	&lt;p&gt;I nearly jump out of my seat in excitement when I receive a well-explained, tested contribution that will apply cleanly. Usually, it is less than a day before I release a new version. On the contrary, if any of those three are missing, it is usually weeks or even months.&lt;/p&gt;
+
+
+	&lt;p&gt;The reason &lt;strong&gt;is not that I didn’t like the addition&lt;/strong&gt;, but &lt;strong&gt;that I have to fill in pieces&lt;/strong&gt; you missed (and I don’t have a lot of time). If you didn’t explain why, I have to figure that out (if I even can). If you didn’t test it, I have to test it. If it didn’t apply cleanly, I have to fix merge conflicts and copy and paste code around. And, if you didn’t do any of those three, trust me when I say that you will never see me click ignore faster.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;strong&gt;I promise you&lt;/strong&gt; that if you do these three things each time you contribute to a project, your changes will not only get pulled in faster, but you will become &lt;strong&gt;a more rounded and skilled programmer&lt;/strong&gt;.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=dH0YUzKSDYs:pK9Fw6ACqiQ:yIl2AUoC8zA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=dH0YUzKSDYs:pK9Fw6ACqiQ:dnMXMwOfBR0"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=dnMXMwOfBR0" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=dH0YUzKSDYs:pK9Fw6ACqiQ:7Q72WNTAKBA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/dH0YUzKSDYs" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/3/12/3-simple-guidelines-for-contributing</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-03-04:8919</id>
+    <published>2009-03-04T22:35:00Z</published>
+    <updated>2009-03-08T19:08:42Z</updated>
+    <category term="Specifically Ruby" />
+    <category term="clogging" />
+    <category term="http" />
+    <category term="net" />
+    <category term="redirects" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/BcXkyZgMdO0/following-redirects-with-net-http" rel="alternate" type="text/html" />
+    <title>Following Redirects with Net/HTTP</title>
+<summary type="html">&lt;p&gt;In which I revive clogging by presenting a simple class that follows a limited number of redirects on its journey to an endpoint.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I revive clogging by presenting a simple class that follows a limited number of redirects on its journey to an endpoint.&lt;/p&gt;
+&lt;p&gt;The web is full of redirects. It isn’t that hard to figure out how to follow them using Ruby, but it always helps to have examples when you are learning. Not too long ago I was hacking on some feed auto discovery code and made a little class that, given a url, will find the endpoint and return the response from that endpoint.&lt;/p&gt;
+
+
+	&lt;p&gt;I figured in the &lt;a href="http://railstips.org/2007/7/11/clogging-code-blogging"&gt;old spirit of clogging&lt;/a&gt;, I would post it here until I have time to package the full feed auto discovery library and release it on Github.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'logger'
+require 'net/http'
+
+class RedirectFollower
+  class TooManyRedirects &amp;lt; StandardError; end
+
+  attr_accessor :url, :body, :redirect_limit, :response
+
+  def initialize(url, limit=5)
+    @url, @redirect_limit = url, limit
+    logger.level = Logger::INFO
+  end
+
+  def logger
+    @logger ||= Logger.new(STDOUT)
+  end
+
+  def resolve
+    raise TooManyRedirects if redirect_limit &amp;lt; 0
+
+    self.response = Net::HTTP.get_response(URI.parse(url))
+
+    logger.info "redirect limit: #{redirect_limit}" 
+    logger.info "response code: #{response.code}" 
+    logger.debug "response body: #{response.body}" 
+
+    if response.kind_of?(Net::HTTPRedirection)      
+      self.url = redirect_url
+      self.redirect_limit -= 1
+
+      logger.info "redirect found, headed to #{url}" 
+      resolve
+    end
+
+    self.body = response.body
+    self
+  end
+
+  def redirect_url
+    if response['location'].nil?
+      response.body.match(/&amp;lt;a href=\"([^&amp;gt;]+)\"&amp;gt;/i)[1]
+    else
+      response['location']
+    end
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;You can then follow redirects as easily as this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;google = RedirectFollower.new('http://google.com').resolve
+puts google.body&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Which when run will output something like this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;I, [2009-03-04T17:16:58.879672 #69272]  INFO -- : redirect limit: 5
+I, [2009-03-04T17:16:58.880669 #69272]  INFO -- : redirect found, headed to http://www.google.com/
+I, [2009-03-04T17:16:58.987963 #69272]  INFO -- : redirect limit: 4&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Followed by the html from www.google.com which I did not include. The logger method comes in ridiculously handy when following redirects as sometimes it is kind of hard to figure out what is going on. You can also optionally pass in a limit for how many times you would like to redirect.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;RedirectFollower.new('http://foobar.com', 3).resolve&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;This would set the number of redirects to follow to 3, instead of the default 5. You always want to put some kind of limit on the number of redirects to follow or you could end up in infinite redirection.&lt;/p&gt;
+
+
+	&lt;p&gt;Nothing fancy but it gets the job done. Maybe if I get a chance I’ll post on how to test this by stubbing responses.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=BcXkyZgMdO0:VHCEFBru5JU:yIl2AUoC8zA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=BcXkyZgMdO0:VHCEFBru5JU:dnMXMwOfBR0"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=dnMXMwOfBR0" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=BcXkyZgMdO0:VHCEFBru5JU:7Q72WNTAKBA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/BcXkyZgMdO0" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/3/4/following-redirects-with-net-http</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-03-01:8914</id>
+    <published>2009-03-01T23:56:00Z</published>
+    <updated>2009-03-24T16:47:40Z</updated>
+    <category term="Site News" />
+    <category term="magazine" />
+    <category term="web hooks" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/1gl2IlUQhlA/first-time-in-print" rel="alternate" type="text/html" />
+    <title>First Time in Print</title>
+<summary type="html">&lt;p&gt;In which I mention my first time in print, an article for the first issue of Rails magazine.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I mention my first time in print, an article for the first issue of Rails magazine.&lt;/p&gt;
+&lt;p&gt;The first issue of &lt;a href="http://railsmagazine.com/"&gt;Rails Magazine&lt;/a&gt; just came out and I wrote an article for it  titled “Playing Hooky a.k.a. Web Hooks.” Below is the opening paragraph of the article to give you an idea of what it entails.&lt;/p&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;From everything that I have read and experienced, web hooks are awesome! They let developers easily extend and integrate web applications and allow users to receive events and data in real-time. Yep, real-time. No polling here folks. So what are web hooks? Lets start with examples, followed by theory, and then cap it off with code.&lt;/p&gt;&lt;/blockquote&gt;
+
+	&lt;p&gt;&lt;a href="http://railsmagazine.com/articles/7"&gt;&lt;img class="image right" src="http://static.railstips.org/images/articles/rails_magazine_playing_hooky.jpg" alt="Playing Hooky Rails Magazine Screenshot" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;p&gt;I really like the idea of Ruby and Rails related magazines. As much time as I spend on my computer, I rather enjoy small doses of other forms of media, such as thumbing through a magazine. I already purchased a few copies (had to get one for mom) and the process was pretty easy. The print version is $8 and I believe the &lt;span class="caps"&gt;PDF&lt;/span&gt; version will be available for download for free in 2 weeks (someone correct me if that is wrong).&lt;/p&gt;
+
+
+	&lt;p&gt;One way or another, if you check out my article, comment or twitter me feedback. I took kind of a different topic than usual for me so I’m curious what others think.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: The digital version of the magazine can now be &lt;a href="http://pdf.railsmagazine.com/rails-magazine-issue1.pdf"&gt;downloaded for free&lt;/a&gt;.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=1gl2IlUQhlA:XeGgLwODmoM:yIl2AUoC8zA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=1gl2IlUQhlA:XeGgLwODmoM:dnMXMwOfBR0"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=dnMXMwOfBR0" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~ff/railstips?a=1gl2IlUQhlA:XeGgLwODmoM:7Q72WNTAKBA"&gt;&lt;img src="http://feeds2.feedburner.com/~ff/railstips?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/1gl2IlUQhlA" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/3/1/first-time-in-print</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-02-21:8778</id>
+    <published>2009-02-21T22:37:00Z</published>
+    <updated>2009-02-21T22:38:52Z</updated>
+    <category term="Testing" />
+    <category term="shoulda" />
+    <category term="testing" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/WBgCxrYveQU/shoulda-looked-at-it-sooner" rel="alternate" type="text/html" />
+    <title>Shoulda Looked At It Sooner</title>
+<summary type="html">&lt;p&gt;In which I explain what I like about shoulda after using it for a few hours.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I explain what I like about shoulda after using it for a few hours.&lt;/p&gt;
+&lt;p&gt;Just a little bit ago I &lt;a href="http://twitter.com/jnunemaker/status/1235022548"&gt;twittered&lt;/a&gt;:&lt;/p&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;I’ve been using shoulda with rspec for past week. Now trying it on fresh rails project and liking it ok thus far.&lt;/p&gt;&lt;/blockquote&gt;
+
+	&lt;p&gt;To which &lt;a href="http://opensoul.org/"&gt;Brandon Keepers&lt;/a&gt; &lt;a href="http://twitter.com/bkeepers/status/1235069983"&gt;replied with&lt;/a&gt;:&lt;/p&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;@jnunemaker what do you like about it?&lt;/p&gt;&lt;/blockquote&gt;
+
+	&lt;p&gt;I started to send a tweet back and realized it would make an ok post here.&lt;/p&gt;
+
+
+	&lt;h2&gt;History&lt;/h2&gt;
+
+
+	&lt;p&gt;I remember asking Brandon at RailsConf last year why he liked RSpec so much (I was using test/spec at the time) and his answer was, “I don’t know, just because.”&lt;/p&gt;
+
+
+	&lt;p&gt;Of course after that response, he laughed and tried to explain. One thing I’ve noticed is that it is sometimes hard to explain &lt;em&gt;why&lt;/em&gt; you prefer a certain tool over another. That said, I am going to give it a shot.&lt;/p&gt;
+
+
+	&lt;h2&gt;Shoulda with RSpec&lt;/h2&gt;
+
+
+	&lt;p&gt;When Joe Ferris &lt;a href="http://giantrobots.thoughtbot.com/2009/2/3/speculating-with-shoulda"&gt;announced&lt;/a&gt; that shoulda macros could now be used with RSpec, I switched away from rspec-on-rails-matchers pretty quickly. I’ve been using shoulda’s macros with RSpec for about a little while and today when I started  a new side project, because of my little bit of familiarity and interest due to using it the past while, I thought what the heck, and went all or nothing with &lt;a href="http://www.thoughtbot.com/projects/shoulda/"&gt;shoulda&lt;/a&gt;.&lt;/p&gt;
+
+
+	&lt;h2&gt;Toe Dipping&lt;/h2&gt;
+
+
+	&lt;p&gt;What is funny, is that I was completely anti-shoulda until they announced RSpec compatibility. I remember thinking, oh great, here comes another stupid testing framework. I looked it over several times and couldn’t find enough coolness to interest me in switching. When they announced that I could &lt;strong&gt;dip my toe in&lt;/strong&gt; while still using RSpec, I gave it a shot. Honestly, without the toe dipping, it would have been a long time, if ever, before I even gave shoulda a fair shot.&lt;/p&gt;
+
+
+	&lt;p&gt;The dipping of the toe method reminds me of git-svn. My first git experience was working with an svn repository. The same thing happened. I figured I had nothing to lose by dipping my toe in and a few hours later, I was hooked.&lt;/p&gt;
+
+
+	&lt;p&gt;At first, as usual with new things, I was frustrated, followed by excited, followed by frustrated. After an hour or two of adding tests to the project, with the shoulda source code right by my side, things started to kind of click.&lt;/p&gt;
+
+
+	&lt;h2&gt;My Two Favorite Shoulda Things&lt;/h2&gt;
+
+
+	&lt;p&gt;1. As I look at my tests from various projects using test/unit, test/spec, rspec and this new project with shoulda, &lt;strong&gt;the shoulda tests just seem more readable&lt;/strong&gt;. I don’t know if it is the context/should verbiage that I like better than describe/it or what, but my test files &lt;strong&gt;seem easier to scan&lt;/strong&gt; and aesthetically more pretty (if that makes sense).&lt;/p&gt;
+
+
+	&lt;p&gt;2. &lt;strong&gt;I love the shoulda controller macros&lt;/strong&gt;. They put the few matchers that I created and used with RSpec to shame. That is not RSpec’s fault, I just love shoulda’s. I’m usually most interested in code and syntax, so here is a sample from the project I’m playing with that tests a basic sessions controller.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class SessionsControllerTest &amp;lt; ActionController::TestCase
+  context "on GET to :new" do
+    setup { get :new }
+
+    should_render_a_form
+    should_respond_with :success
+    should_render_template :new
+  end
+
+  context "on POST to :create with valid credentials" do
+    setup do
+      User.stub!(:authenticate, :return =&amp;gt; users(:jnunemaker))
+      post :create, :username =&amp;gt; 'jnunemaker', :password =&amp;gt; 'secret'
+    end
+
+    should_return_from_session :user_id, "users(:jnunemaker).id" 
+    should_redirect_to 'root_url'
+    should_filter_params :username, :password
+  end
+
+  context "on POST to :create with invalid credentials" do
+    setup do
+      User.stub!(:authenticate, :return =&amp;gt; nil)
+      post :create, :username =&amp;gt; 'jnunemaker', :password =&amp;gt; 'fake'
+    end
+
+    should_respond_with :success
+    should_render_template :new
+    should_set_the_flash_to /Could not authenticate/
+  end
+
+  logged_in_as :jnunemaker do
+    context "on DELETE to :destroy" do
+      setup { delete :destroy }
+
+      should 'log user out' do
+        session[:user_id].should be(nil)
+      end
+
+      should_redirect_to 'login_url'
+    end
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; I’m also using Jeremy McAnally’s &lt;a href="http://github.com/jeremymcanally/stump/tree/master"&gt;stump&lt;/a&gt; for stubbing the User#authenticate method which makes an external web service call, his &lt;a href="http://github.com/jeremymcanally/matchy/tree/master"&gt;matchy&lt;/a&gt; library for the fancy session[:user_id].should assertion, and a macro  I &lt;a href="http://programblings.com/2008/10/31/two-shoulda-best-practices/"&gt;stole&lt;/a&gt; (logged_in_as) to easily setup authentication for controller tests. Nothing fancy, but I just like the way it flows.&lt;/p&gt;
+
+
+	&lt;h2&gt;Simple Model Test&lt;/h2&gt;
+
+
+	&lt;p&gt;If you are in the mood for more code, here are some of the tests from my user model. Yes, I’m making a twitter client. I’m dissatisfied with pretty much all the twitter clients out there (and I’ve used them all) so I decided to whip one together. I’ll probably open source it at some point.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class UserTest &amp;lt; ActiveSupport::TestCase
+  should_have_many :user_statuses
+  should_have_many :statuses, :through =&amp;gt; :user_statuses
+
+  context "#sync_with_twitter" do    
+    should "not assign ignored attributes" do
+      tweeter = new_tweeter(:id =&amp;gt; '1234', :name =&amp;gt; 'Shaq', :screen_name =&amp;gt; 'THE_REAL_SHAQ', :created_at =&amp;gt; '2006-08-13 22:56:06')
+      User.sync_with_twitter(tweeter, 'secret')
+
+      user = User.find_by_twitter_id('1234')
+      user.created_at.should_not == user.twitter_created_at
+    end
+
+    should "create non-existant user" do
+      assert_difference 'User.count' do
+        tweeter = new_tweeter(:id =&amp;gt; '1234', :name =&amp;gt; 'Shaq', :screen_name =&amp;gt; 'THE_REAL_SHAQ')
+        User.sync_with_twitter(tweeter, 'secret')
+      end
+    end
+
+    should "update existing user" do
+      user = users(:jnunemaker)
+      tweeter = new_tweeter(:id =&amp;gt; user.twitter_id, :name =&amp;gt; 'New Name')
+
+      assert_no_difference 'User.count' do
+        User.sync_with_twitter(tweeter, 'secret')
+      end
+
+      user.reload
+      user.name.should == 'New Name'
+    end
+  end
+
+  def new_tweeter(attrs)
+    tweeter = Twitter::User.new
+    attrs.each { |k,v| tweeter.send("#{k}=", v) }
+    tweeter
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Again, I’m using Jeremy’s matchy (mentioned above) to get the &lt;code&gt;.should ==&lt;/code&gt; syntax. I still enjoy RSpec, but I’m pretty impressed with Shoulda. It feels &lt;strong&gt;very scannable/readable and the macros are really handy&lt;/strong&gt;, both for testing models and controllers.&lt;/p&gt;
+
+
+	&lt;p&gt;Oh, and for those who are wondering, all I did to set things up is install the gems and add the following to my config/environments/test.rb file.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;config.gem 'thoughtbot-shoulda', :lib =&amp;gt; 'shoulda', :source =&amp;gt; 'http://gems.github.com'
+config.gem 'jeremymcanally-stump', :lib =&amp;gt; 'stump', :source =&amp;gt; 'http://gems.github.com'
+config.gem 'jeremymcanally-matchy', :lib =&amp;gt; 'matchy', :source =&amp;gt; 'http://gems.github.com'&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Shoulda thoughts and reactions? Maybe the shoulda users out there could chime in with what they like best. I am also curious what is holding back others who haven’t tried shoulda out yet.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=2jZ9FoyY"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=1ZfYaCaq"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=JGwWW9wR"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/WBgCxrYveQU" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/2/21/shoulda-looked-at-it-sooner</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-02-02:8752</id>
+    <published>2009-02-02T19:43:00Z</published>
+    <updated>2009-02-02T19:46:31Z</updated>
+    <category term="Externals" />
+    <category term="bash" />
+    <category term="command line" />
+    <category term="git" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/iRCdTAXVtQ8/bedazzle-your-bash-prompt-with-git-info" rel="alternate" type="text/html" />
+    <title>Bedazzle Your Bash Prompt with Git Info</title>
+<summary type="html">&lt;p&gt;In which I show how to bedazzle your bash prompt with color and the current git branch.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I show how to bedazzle your bash prompt with color and the current git branch.&lt;/p&gt;
+&lt;p&gt;I have seen this around and this morning finally decided to try it out. Thus far I am finding it surprisingly helpful.  If you put the following in your bash profile, it will show the current git branch in your terminal prompt.&lt;/p&gt;
+
+
+	&lt;h2&gt;bash profile addition&lt;/h2&gt;
+
+
+&lt;pre&gt;function parse_git_branch {
+  ref=$(git-symbolic-ref HEAD 2&amp;gt; /dev/null) || return
+  echo "("${ref#refs/heads/}")" 
+}
+
+PS1="\w \$(parse_git_branch)\$ "&lt;/pre&gt;
+
+	&lt;p&gt;If you are not in a directory that is a git repository it will just provide a normal prompt but if you are in a directory with a git repo, you’ll get a prompt like the following, even when you switch branches:&lt;/p&gt;
+
+
+&lt;pre&gt;~/dev/projects/httparty (master)$ gb
+  integration
+* master
+~/dev/projects/httparty (master)$ git co integration
+Switched to branch "integration" 
+~/dev/projects/httparty (integration)$&lt;/pre&gt;
+
+	&lt;p&gt;Pretty handy, eh? I actually bedazzled mine a bit more with color and the current time like this:&lt;/p&gt;
+
+
+	&lt;h2&gt;bedazzled bash profile addition&lt;/h2&gt;
+
+
+&lt;pre&gt;function parse_git_branch {
+  ref=$(git-symbolic-ref HEAD 2&amp;gt; /dev/null) || return
+  echo "("${ref#refs/heads/}")" 
+}
+
+RED="\[\033[0;31m\]" 
+YELLOW="\[\033[0;33m\]" 
+GREEN="\[\033[0;32m\]" 
+
+PS1="$RED\$(date +%H:%M) \w$YELLOW \$(parse_git_branch)$GREEN\$ "&lt;/pre&gt;
+
+	&lt;p&gt;Here is a screenshot of my prompt.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;img class="image full" src="http://static.railstips.org/images/articles/terminal_with_git_branch.jpg" alt="Terminal with git branch in prompt" /&gt;&lt;/p&gt;
+
+
+	&lt;p&gt;Hawt. Light red blends into the black so as not to stand out. The yellow does standout, but that is because the current branch is more important to me than the directory I am in. The green color and black background is from the Homebrew theme in Terminal (requires Leopard). The reason I added the time is that I do not include the time in my menu bar. If you don’t like the colors I chose, you can &lt;a href="http://systhread.net/texts/200703bashish.php"&gt;pick from a list&lt;/a&gt;.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;strong&gt;Try this out if you haven’t yet, I guarantee you will dig it.&lt;/strong&gt; For those of you out there that use a different shell (zsh, etc.), feel free to post how to do the same in the comments.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=oGnUzZoU"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=wgIRnVlT"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=QOmjnaJ0"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/iRCdTAXVtQ8" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/2/2/bedazzle-your-bash-prompt-with-git-info</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-01-31:8739</id>
+    <published>2009-01-31T07:26:00Z</published>
+    <updated>2009-03-01T22:57:26Z</updated>
+    <category term="Gems" />
+    <category term="httparty" />
+    <category term="json" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/UPm_szMCSAs/httparty-divorces-json" rel="alternate" type="text/html" />
+    <title>HTTParty Divorces JSON</title>
+<summary type="html">&lt;p&gt;In which I describe the slaying of HTTParty’s lone remaining dependency, the formidable &lt;span class="caps"&gt;JSON&lt;/span&gt; gem.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I describe the slaying of HTTParty’s lone remaining dependency, the formidable &lt;span class="caps"&gt;JSON&lt;/span&gt; gem.&lt;/p&gt;
+&lt;p&gt;So I guess &lt;a href="http://railstips.org/2008/12/7/httparty-divorces-activesupport"&gt;dropping ActiveSupport&lt;/a&gt; just wasn’t enough for you people. You demanded more! Almost right away the windows and jruby people started whining (I kid, I kid). Oh, and then Pratik got a &lt;a href="http://twitter.com/lifo/status/1152461252"&gt;little bothered&lt;/a&gt; by the &lt;span class="caps"&gt;JSON&lt;/span&gt; gem’s interference with Rails. Let me just say that the HTTParty is not an exclusive one, so I figured I’d look into making life easier for the aforementioned party poopers.&lt;/p&gt;
+
+
+	&lt;p&gt;Tonight, after watching a couple movies, I felt like hacking, so I decided to remove the &lt;span class="caps"&gt;JSON&lt;/span&gt; gem as a dependency. I remembered that ActiveSupport actually uses &lt;span class="caps"&gt;YAML&lt;/span&gt; (a core library) with some tweaks to parse &lt;span class="caps"&gt;JSON&lt;/span&gt;, so I pulled in that bit of code and HTTParty was officially free of its only remaining chaperone. Yep, now when you install HTTParty, no other gems install.&lt;/p&gt;
+
+
+	&lt;p&gt;I also did some refactoring, fixed a few bugs, added a ton of specs and started to document the code base a bit. Nothing super new other than the lack of the &lt;span class="caps"&gt;JSON&lt;/span&gt; gem, but I figured I would  officially invite windows, jruby and Pratik to the party.&lt;/p&gt;
+
+
+	&lt;h2&gt;What next?&lt;/h2&gt;
+
+
+	&lt;p&gt;So what is next for HTTParty? I’ve been thinking about that a lot and I have a few ideas. I’d love to see integration of &lt;a href="http://railstips.org/2008/11/17/happymapper-making-xml-fun-again"&gt;HappyMapper&lt;/a&gt; and HTTParty. I’m thinking this would be pretty easy with a :parser option in the request methods. Maybe something like this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;HTTParty.get('http://foo.com', :parser =&amp;gt; Foo)&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Any thoughts or preferences on something like this? Then when HTTParty attempts to parse the response, it would call Foo.parse, so you could make your own parsing classes or use HappyMapper objects. Any better ideas? Also, do you have any pain points with HTTParty? Things you find monotonous when consuming web services that would be well suited for the party? Let me know.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=aXpJCsED"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=OsJPhHa6"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=6Cva3TRw"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/UPm_szMCSAs" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/1/31/httparty-divorces-json</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-01-28:8725</id>
+    <published>2009-01-28T21:57:00Z</published>
+    <updated>2009-01-29T09:32:36Z</updated>
+    <category term="Externals" />
+    <category term="Gems" />
+    <category term="httparty" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/ZB7DPlh4UW4/httparty-meet-mr-response" rel="alternate" type="text/html" />
+    <title>HTTParty Meet Mr. Response</title>
+<summary type="html">&lt;p&gt;In which HTTParty gets a first class response object, thus exposing the original body and response code.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which HTTParty gets a first class response object, thus exposing the original body and response code.&lt;/p&gt;
+&lt;p&gt;Whew! Been a while, eh? I declare &lt;a href="http://railstips.org/2009/1/6/test-or-die"&gt;test awareness month&lt;/a&gt; and then drop off the face of the earth. No fears, I’ll have more testing articles coming soon. I’ve been swamped, then sick, then swamped again and finally sick again. That is my excuse. Worthy, eh?. Lets kick the blogging train off again with a small post on some HTTParty updates released today in 0.2.8.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;a href="http://alexvollmer.com/"&gt;Alex Vollmer&lt;/a&gt;, in his infinite awesomeness, spearheaded a few new features, such as more &lt;a href="http://github.com/jnunemaker/httparty/commit/a2686cf97bcdb15ca0c4af0fb57679eaf4eaf3c4"&gt;robust handling of mime types&lt;/a&gt;, &lt;a href="http://github.com/jnunemaker/httparty/commit/79d9ed6677da253207c6ae8db18acd8e17dab76f"&gt;authentication support&lt;/a&gt; for the httparty &lt;abbr title="command line interface"&gt;&lt;span class="caps"&gt;CLI&lt;/span&gt;&lt;/abbr&gt; and even a first class &lt;a href="http://github.com/jnunemaker/httparty/blob/2bb92d8e862c4e5eadd2822e7c103e8bde78254c/lib/httparty/response.rb"&gt;response object&lt;/a&gt;.&lt;/p&gt;
+
+
+	&lt;h2&gt;HTTParty bin authentication&lt;/h2&gt;
+
+
+	&lt;p&gt;Let’s say you want to print your timeline from twitter. With the new &lt;span class="caps"&gt;CLI&lt;/span&gt; basic auth support, you can do the following:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;httparty "http://twitter.com/statuses/user_timeline.json" -u username:secretpassword&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;h2&gt;First class response object&lt;/h2&gt;
+
+
+	&lt;p&gt;So why should we have a first class response object? Well, sometimes it is handy to get the response code, response headers or the original body. The way HTTParty was originally created did not allow for this. Now you can do the following:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'rubygems'
+require 'httparty'
+
+response = HTTParty.get('http://twitter.com/statuses/public_timeline.json')
+# the following was not possible
+# with httparty in older versions
+puts response.code, response.body, response.headers.inspect
+
+# backwards compatibility should "just work" 
+response.each do |status|
+  puts status['user']['screen_name']
+  puts status['text']
+  puts ''
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;As I said, previously the response code, headers and body were completely hidden to you. Now, &lt;strong&gt;instead of raising the net/http exceptions&lt;/strong&gt;, we just return a response object with the code and body and delegate anything else to the parsed response. This was driven by a great point that Alex made: sometimes non-2xx responses have xml/json in the body that would be helpful to parse.&lt;/p&gt;
+
+
+	&lt;p&gt;I’m pretty stoked about the updates and hope you find them helpful. Thanks to others who have committed bug fixes and such as well.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: As mentioned in the comments below, Don Peterson added headers to the response object, refactored the specs and added a full suite of cucumber features. I pulled his changes in and released 0.2.9. I also updated the example above to include the headers. Thanks Don!&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=473ZoOJk"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=bWWYry3u"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=xXb2H53E"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/ZB7DPlh4UW4" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/1/28/httparty-meet-mr-response</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-01-08:8673</id>
+    <published>2009-01-08T04:59:00Z</published>
+    <updated>2009-01-13T19:49:24Z</updated>
+    <category term="Testing" />
+    <category term="test unit" />
+    <category term="testing" />
+    <category term="validations" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/o_Yk8zfZqzE/test-or-die-validates-uniqueness-of" rel="alternate" type="text/html" />
+    <title>Test Or Die: Validates Uniqueness Of</title>
+<summary type="html">&lt;p&gt;In which I show how to test validates_uniqueness_of with a few different options.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I show how to test validates_uniqueness_of with a few different options.&lt;/p&gt;
+&lt;p&gt;In the &lt;a href="http://railstips.org/2009/1/6/test-or-die"&gt;test or die&lt;/a&gt;, I showed a simple example of how to test validates_presence_of. Let’s build on that by adding categories and then ensure that categories have a unique name that is not case sensitive. If you haven’t been following along and want to, go &lt;a href="http://railstips.org/2009/1/6/test-or-die"&gt;back to the beginning&lt;/a&gt; and create your app and first test. Let’s start by running the following commands to create the category model and migration, migrate your development database and prepare your test one.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;script/generate model Category name:string
+rake db:migrate
+rake db:test:prepare
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;The important thing to remember when testing uniqueness of is that it does a check with the database to see if the record is unique or not. This means you need to have a record in the database to verify that the validation does in fact get triggered. You can do this several ways but since we are staying simple, we’ll do this in test/unit/category_test.rb:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'test_helper'
+
+class CategoryTest &amp;lt; ActiveSupport::TestCase
+  test 'should have unique name' do
+    cat1 = Category.create(:name =&amp;gt; 'Ruby')
+    assert cat1.valid?, "cat1 was not valid #{cat1.errors.inspect}" 
+
+    cat2 = Category.new(:name =&amp;gt; cat1.name)
+    cat2.valid?
+    assert_not_nil cat2.errors.on(:name)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;This breaks the one assertion per test that some people hold dear, but we are just learning right now. As you do this more and more, you will run into gotchas but by then you will know where to look for solutions. Now run rake to see if your test is failing.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ rake
+/opt/local/bin/ruby -Ilib:test "/opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb" "test/unit/category_test.rb" "test/unit/post_test.rb" 
+Loaded suite /opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader
+Started
+F.
+Finished in 0.280179 seconds.
+
+  1) Failure:
+test_should_have_unique_name(CategoryTest)
+    [./test/unit/category_test.rb:10:in `test_should_have_unique_name'
+     /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/testing/setup_and_teardown.rb:94:in `__send__'
+     /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/testing/setup_and_teardown.rb:94:in `run']:
+&amp;lt;nil&amp;gt; expected to not be nil.
+
+2 tests, 3 assertions, 1 failures, 0 errors&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Now that we have failed, let’s add the validation to our Category model.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class Category &amp;lt; ActiveRecord::Base
+  validates_uniqueness_of :name
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Run rake again and you will see happiness! Another way you could test the same thing above is by creating a fixture with a name of Ruby and then just use that fixture in place of cat1. The fixture file (test/fixtures/categories.yml) would look like this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="yaml"&gt;# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ruby:
+  name: Ruby
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Fixtures use yaml (YAML Ain’t Markup Language) to format the data. Each fixture has a name. In this case, we named our fixture ‘ruby’. In our test, we will access it  using the same name.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'test_helper'
+
+class CategoryTest &amp;lt; ActiveSupport::TestCase  
+  test 'should have unique name' do
+    &lt;/code&gt;&lt;strong&gt;&lt;code&gt;ruby = categories(:ruby)&lt;/code&gt;&lt;/strong&gt;&lt;code class="ruby"&gt;
+
+    category = Category.new(:name =&amp;gt; ruby.name)
+    category.valid?
+    assert_not_nil category.errors.on(:name)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Note the bold line above. It uses the &lt;code&gt;categories&lt;/code&gt; method to access the category fixture named ruby. It returns a category just like Category.find with an id would. The difference is that we don’t define id’s in our fixtures, so we don’t know what ruby’s id would be and, more importantly, names are often more intent revealing (think fixture names like active, inactive, published, not_published).&lt;/p&gt;
+
+
+	&lt;p&gt;That was easy but we didn’t actually verify case insensitivity. Let’s add a bit more to make sure that is in fact the case.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'test_helper'
+
+class CategoryTest &amp;lt; ActiveSupport::TestCase  
+  test 'should have unique name' do
+    ruby = categories(:ruby)
+
+    category = Category.new(:name =&amp;gt; ruby.name)
+    category.valid?
+    assert_not_nil category.errors.on(:name)
+
+    &lt;/code&gt;&lt;strong&gt;&lt;code&gt;category.name = ruby.name.downcase
+    category.valid?
+    assert_not_nil category.errors.on(:name)&lt;/code&gt;&lt;/strong&gt;&lt;code class="ruby"&gt;
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Run rake again and &lt;span class="caps"&gt;FAIL&lt;/span&gt;! OH &lt;span class="caps"&gt;NOEZ&lt;/span&gt;! No worries, we just forgot to add the case sensitive part to the validation.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class Category &amp;lt; ActiveRecord::Base
+  validates_uniqueness_of :name&lt;/code&gt;&lt;strong&gt;&lt;code&gt;, :case_sensitive =&amp;gt; false&lt;/code&gt;&lt;/strong&gt;&lt;code class="ruby"&gt;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Let’s run rake one last time and make sure that things are passing.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ rake
+/opt/local/bin/ruby -Ilib:test "/opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb" "test/unit/category_test.rb" "test/unit/post_test.rb" 
+Loaded suite /opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader
+Started
+..
+Finished in 0.396569 seconds.
+
+2 tests, 3 assertions, 0 failures, 0 errors&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Yep, we are good to go. So how would you test this with a scope on the uniqueness validation? Well, I’m not going to add a column and all that but it would look something like this if the column you were scoping uniqueness to was site_id.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'test_helper'
+
+class CategoryTest &amp;lt; ActiveSupport::TestCase  
+  # ... same stuff as above
+
+  test 'should not allow the same name for the same site' do
+    ruby = categories(:ruby)
+
+    category = Category.new(:name =&amp;gt; ruby.name, :site_id =&amp;gt; ruby.site_id)
+    category.valid?
+    assert_not_nil category.errors.on(:name)
+  end
+
+  test 'should allow the same name for different sites' do
+    ruby = categories(:ruby)
+    site = sites(:not_ruby_site)
+
+    category = Category.new(:name =&amp;gt; ruby.name, :site_id =&amp;gt; site.id)
+    category.valid?
+    assert_nil category.errors.on(:name)
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;That was pretty much off the top of my head, but it should give you the idea. The important thing is to test both sides. Don’t simply test that it is invalid for the same site, also test that it is valid for different sites. It may not be super important in this instance, but &lt;strong&gt;it is important to get into this mindset when testing&lt;/strong&gt;.&lt;/p&gt;
+
+
+	&lt;p&gt;You always want to think about the bounds. &lt;strong&gt;Test out of bounds on both sides and then in bounds to make sure that all cases are covered&lt;/strong&gt;. Again, this is just the basics. There are other ways to do this, but I just thought I would get you pointed in the right direction.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=XXmJFIML"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=1lyHTw0g"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=ALk98H91"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/o_Yk8zfZqzE" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/1/8/test-or-die-validates-uniqueness-of</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-01-07:8654</id>
+    <published>2009-01-07T05:48:00Z</published>
+    <updated>2009-01-07T05:54:49Z</updated>
+    <category term="Testing" />
+    <category term="testing" />
+    <category term="theory" />
+    <category term="thoughts" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/gNn-ukDNKIs/my-testing-theory" rel="alternate" type="text/html" />
+    <title>My Testing Theory</title>
+<summary type="html">&lt;p&gt;In which I discuss my theories when testing and what I would like to cover this month.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I discuss my theories when testing and what I would like to cover this month.&lt;/p&gt;
+&lt;p&gt;I figured I would start of this &lt;a href="http://railstips.org/2009/1/6/test-or-die"&gt;Test or Die&lt;/a&gt; month of January with the theories behind why and how I test. I am far from a “purist”, meaning what I care about most is that my butt is covered and that I can refactor until my little heart is content. I could care less about whether my unit tests hit the database and I really don’t want this emphasis on testing to become that.&lt;/p&gt;
+
+
+	&lt;h2&gt;Vision&lt;/h2&gt;
+
+
+	&lt;p&gt;In fact, my previous statement is really important and I’m going to say it again. &lt;strong&gt;I don’t want this emphasis on testing to turn into philosophical discussions&lt;/strong&gt; on what is the true way. I want it to be down and dirty, in the mud, at the beginner level and then step slowly but surely up to intermediate and end where I am actually at (most likely not expert). I want it to be practical. I want people to learn the basics and not worry if they are doing it the “best” way. &lt;strong&gt;This month is all about starting&lt;/strong&gt;.&lt;/p&gt;
+
+
+	&lt;h2&gt;Mission Statement&lt;/h2&gt;
+
+
+	&lt;p&gt;That said, what are my beliefs? Well, like I said above, I like to cover my butt. &lt;strong&gt;I want to know if something breaks when I change something.&lt;/strong&gt; If I update to the latest released version of Rails or I dare to ride on the edge, I want to know if the update broke anything in my application. I have heard some speak of testing as a contract. It is an agreement with your code that it will behave under certain terms and if it doesn’t, someone call the lawyer (or turn red in autotest).&lt;/p&gt;
+
+
+	&lt;h2&gt;History&lt;/h2&gt;
+
+
+	&lt;p&gt;Just for the heck of it, I’ll give you a little look at where I am at tool-wise. I started with good old &lt;a href="http://www.ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html"&gt;test/unit&lt;/a&gt;. Then, a long time ago, in a windy city (literally, the windy city, Chicago), I attended a a &lt;a href="http://chirb.org/event/show/2"&gt;chirb.org&lt;/a&gt; meeting on &lt;span class="caps"&gt;BDD&lt;/span&gt; with &lt;a href="http://rspec.info/"&gt;RSpec&lt;/a&gt;. I thought it was cool and loved the syntax, but wasn’t ready for a switch. &lt;a href="http://chneukirchen.org/repos/testspec/README"&gt;test/spec&lt;/a&gt; came along and I greeted it with open arms. I used it for all of 2007 and part of 2008.&lt;/p&gt;
+
+
+	&lt;p&gt;I don’t even remember what my first project was that used RSpec, but it was after RailsConf so it must have been June or July. I’ve used pretty much only RSpec since then. I drank the kool-aide and it went down smooth. Then, I started running into errors that my tests weren’t catching, I think, in part, because I was isolating too much and not testing enough. I realized that I needed to write more tests in RSpec to get the coverage I wanted but I didn’t feel it was worth all the extra effort. Again, just my opinion, you are free to disagree, but you are wrong. Just kidding. :)&lt;/p&gt;
+
+
+	&lt;p&gt;Then, in December, after reading about &lt;a href="http://giantrobots.thoughtbot.com/2008/11/7/a-critical-look-at-the-current-state-of-ruby-testing"&gt;the current state of ruby testing&lt;/a&gt;, I felt swung back to good old test/unit, so I gave &lt;a href="http://www.railstips.org/2008/12/17/using-context-and-stump-to-httparty-like-a-wufoo"&gt;context and stump&lt;/a&gt; a try and really liked it. They provide just enough of what I need from RSpec by adding it onto vanilla test unit. I haven’t started a new Rails app since trying them out, but my next one will most likely have them both included in my test helper. Enough with the history lesson.&lt;/p&gt;
+
+
+	&lt;h2&gt;Coverage&lt;/h2&gt;
+
+
+	&lt;p&gt;Speaking of test coverage, what all do I think I’ll be covering in the next month? Well, truth is, &lt;strong&gt;I didn’t really think that far ahead&lt;/strong&gt;, I just felt like testing was something I needed to push and hoped that the rest of the community would step up too. I’m actually amazed at the response thus far to be honest.&lt;/p&gt;
+
+
+	&lt;p&gt;I would like to &lt;strong&gt;show the different options&lt;/strong&gt; out there in a post or two and maybe elaborate a bit on my thoughts of them. I would like to run through &lt;strong&gt;all the basic contracts&lt;/strong&gt; that one would want to have in their app. Simple tests like validations, associations, controllers, etc. From there, I will probably jump out of Rails and into plain old Ruby and show how I have begun to &lt;strong&gt;test my gems&lt;/strong&gt;, specifically those that interact with other services and such.&lt;/p&gt;
+
+
+	&lt;p&gt;That is really as far as I have thought ahead. I hope the discussions on each post are positive. I hope those in the know of testing &lt;strong&gt;help and encourage those that aren’t&lt;/strong&gt;. I hope that this spurs those in the know that disagree with me to post their own articles and explain why I am wrong (and I will gladly link to them if you notify me). I just want to get all the opinions out there. &lt;strong&gt;I am fine if this takes longer than a month&lt;/strong&gt;. Also, don’t expect every post for the next month or two to be about testing. I have some other stuff up my sleeve too.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=MCfS608l"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=S7y1TzuK"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=3Px1OoT6"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/gNn-ukDNKIs" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/1/7/my-testing-theory</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-01-06:8626</id>
+    <published>2009-01-06T20:11:00Z</published>
+    <updated>2009-01-13T19:49:15Z</updated>
+    <category term="Testing" />
+    <category term="test unit" />
+    <category term="testing" />
+    <category term="validations" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/sV9v2HvQkGw/test-or-die" rel="alternate" type="text/html" />
+    <title>Test Or Die</title>
+<summary type="html">&lt;p&gt;In which I beg the community to start testing if you aren’t or start helping others if you are.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I beg the community to start testing if you aren’t or start helping others if you are.&lt;/p&gt;
+&lt;p&gt;As you might have noticed, approximately 6 days ago, we experienced what is known as a new year. With new years come a feeling of starting over and the ridiculous idea that new habits form overnight. Resolutions are made, gyms are filled, and a month later they clear out for the disciplined to enjoy in peace once again.&lt;/p&gt;
+
+
+	&lt;p&gt;Back in the old days, you know, like 2006, I was occasionally rogue and didn’t write tests. &lt;strong&gt;Tests? Isn’t that what the browser is for?&lt;/strong&gt;  Right? Right? Yeah, you know. I mean I only used the browser for tests when I wrote &lt;span class="caps"&gt;PHP&lt;/span&gt;. Wrong. You are sorely wrong my friend. In 2007, I pushed myself to learn testing and in 2008 I pushed myself to learn RSpec. You know what? &lt;strong&gt;I don’t regret a minute I spent learning how to write automated tests&lt;/strong&gt; and now I actually find writing tests enjoyable. Crazy, I know.&lt;/p&gt;
+
+
+	&lt;p&gt;I kind of assumed everyone was on the testing bandwagon. I mean lots of people seem to talk about &lt;span class="caps"&gt;TDD&lt;/span&gt; and &lt;span class="caps"&gt;BDD&lt;/span&gt; so everyone must be doing it right? Wrong. I’m in no way perfect, but I am still &lt;strong&gt;shocked and abhorred&lt;/strong&gt; at the number of people out there in Ruby and Rails land that don’t test.&lt;/p&gt;
+
+
+	&lt;h2&gt;Test Awareness Month&lt;/h2&gt;
+
+
+	&lt;p&gt;Test first, test last, &lt;span class="caps"&gt;TDD&lt;/span&gt;, BDD, whatever. I don’t care how you do it, I just care &lt;strong&gt;that&lt;/strong&gt; you do it. My mission for the month of January (and maybe longer) is to get all of you who don’t know where to start or don’t think you have time to learn or think you don’t need to learn, &lt;strong&gt;starting, learning and testing&lt;/strong&gt;. Period. I’m going to start with the basics and post like a superhuman fiend until everyone is testing and the excuses are gone like donkey kong.&lt;/p&gt;
+
+
+	&lt;h2&gt;Your First Test&lt;/h2&gt;
+
+
+	&lt;p&gt;So where do we start? It all starts small and you build. You can’t download it like Neo in the Matrix unfortunately. To show you how easy it is to get started, lets run a few commands. Open up terminal and make sure you have Rails 2.2.2+ installed. Onward!&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ rails first_test
+cd first_test
+rake db:create
+rake db:create RAILS_ENV=test
+script/generate model Post title:string
+rake db:migrate
+rake db:test:prepare
+rake
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;At this point, you have created an app, created both your development and test databases, added a model named post, migrated your database, ensured that your test database is equivalent to your development database and run your test suite for the first time. Wow, that was easy, right?&lt;/p&gt;
+
+
+	&lt;p&gt;Let’s go one step further for this post. We added a title to the post, wouldn’t it be nice to ensure the presence of that title? &lt;strong&gt;Who has used validates_presence_of before? Go ahead, raise your hand&lt;/strong&gt;. Uh huh, everyone. Why don’t we add a test quick to make sure that it is a requirement in our app. Open up your favorite editor and view the file test/unit/post_test.rb. It should look like this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'test_helper'
+
+class PostTest &amp;lt; ActiveSupport::TestCase
+  # Replace this with your real tests.
+  test "the truth" do
+    assert true
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Let’s replace the truth test with a check that a post is not valid without a title. Our post_test.rb file should now look like this.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;require 'test_helper'
+
+class PostTest &amp;lt; ActiveSupport::TestCase
+  test "should require a title" do
+    post = Post.new
+    post.valid?
+    assert_not_nil post.errors.on(:title)
+  end
+end&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Now that we have that in place, let’s run our test suite and see if it worked. Go back to your terminal and run rake like this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ rake
+/opt/local/bin/ruby -Ilib:test "/opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb" "test/unit/post_test.rb" 
+Loaded suite /opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader
+Started
+F
+Finished in 0.235756 seconds.
+
+  1) Failure:
+test_should_require_a_title(PostTest)
+    [./test/unit/post_test.rb:7:in `test_should_require_a_title'
+     /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/testing/setup_and_teardown.rb:94:in `__send__'
+     /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/testing/setup_and_teardown.rb:94:in `run']:
+&amp;lt;nil&amp;gt; expected to not be nil.
+
+1 tests, 1 assertions, 1 failures, 0 errors
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;FAIL&lt;/span&gt;! You are a failure. Give up&lt;/strong&gt;. You can’t even write one test. I guess it is too hard. I guess it is not worth learning! Oh, wait, we didn’t add it to the post model, did we? Open up app/models/post.rb and add the validation rule.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code class="ruby"&gt;class Post &amp;lt; ActiveRecord::Base
+  validates_presence_of :title
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Now run rake again. You should get something like this:&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ rake
+/opt/local/bin/ruby -Ilib:test "/opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb" "test/unit/post_test.rb" 
+Loaded suite /opt/local/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader
+Started
+.
+Finished in 0.253822 seconds.
+
+1 tests, 1 assertions, 0 failures, 0 errors&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;Yay! Our only assertion passed. That is it! Literally. You now know how to test validates_presence_of. There are some things that are hard to test, but most of it is simple stuff like this. I can promise you, testing will save your butt and eventually you’ll be able to actually code faster and better when you test, than when you don’t.&lt;/p&gt;
+
+
+	&lt;h2&gt;How Can You Help?&lt;/h2&gt;
+
+
+	&lt;p&gt;So here is the deal, I’ll try to think of a lot of the basics of testing and I’ll also try to show how to do things with different testing frameworks, but I’ll probably need some help from you. I see two ways you can help out.&lt;/p&gt;
+
+
+	&lt;ol&gt;
+	&lt;li&gt;If you haven’t tested at all or have very little and you have something you want to test, but don’t know how, let me know? &lt;a href="http://railstips.uservoice.com"&gt;Suggest it&lt;/a&gt;. &lt;a href="mailto:nunemaker@gmail.com"&gt;Email me&lt;/a&gt;. Send a pigeon or a fax. If I have time and the ability I will try to help out and post the results on RailsTips. &lt;/li&gt;
+		&lt;li&gt;If you know how to test, be it in test/unit, test/spec, context, shoulda, RSpec or whatever, start thinking about what it took to get you started. If you have a blog, post articles. If you don’t, I’ll help you get them posted here. I seriously want to fill up all the Ruby and Rails blogs with testing articles from simple to complex (ie: from validates_presence_of to stubbing Net::HTTP).&lt;/li&gt;
+	&lt;/ol&gt;
+
+
+	&lt;p&gt;Friends don’t let friends code without tests. Together lets make 2009 &lt;strong&gt;the year of practicing best practices&lt;/strong&gt; in Ruby and Rails and lets start it by hopping on the test bandwagon.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=NpM4l8PX"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=2eOv7quk"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=o6Xz7xbF"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/sV9v2HvQkGw" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/1/6/test-or-die</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-01-05:8608</id>
+    <published>2009-01-05T21:18:00Z</published>
+    <updated>2009-01-29T09:02:55Z</updated>
+    <category term="Externals" />
+    <category term="hardware" />
+    <category term="software" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/WToiCYR_NNs/my-setup-and-software" rel="alternate" type="text/html" />
+    <title>My Setup and Software</title>
+<summary type="html">&lt;p&gt;In which I divulge the hardware and software that I use to get the job done.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I divulge the hardware and software that I use to get the job done.&lt;/p&gt;
+&lt;p&gt;The other day I read &lt;a href="http://al3x.net/2009/01/02/waferbaby-interview.html"&gt;Alex Payne’s interview&lt;/a&gt; on what hardware and software he uses and thought it was interesting. I typically find posts like this intriguing because everyone is a bit different and you can learn so much from those differences. I decided I would take the time to post on my setup and how I get things done.&lt;/p&gt;
+
+
+	&lt;h2&gt;What hardware?&lt;/h2&gt;
+
+
+	&lt;p&gt;Below is a picture of my desk. I try to keep it as minimal as possible and everything that goes on it has a purpose. If you head &lt;a href="http://www.flickr.com/photos/johnnunemaker/3170605851/"&gt;over to flickr&lt;/a&gt;, you can see all the annotations I added explaining the various items.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;a href="http://www.flickr.com/photos/johnnunemaker/3170605851/" title="My Desk by jnunemaker, on Flickr"&gt;&lt;img class="image full" src="http://farm4.static.flickr.com/3094/3170605851_cce65d45b2.jpg" alt="My Desk" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;p&gt;I use a Macbook Air as my only machine. It has a 1.6GHz Core 2 Duo processor and 2GB of &lt;span class="caps"&gt;RAM&lt;/span&gt;. Occasionally, I wish for more power but it is such a sexy machine that I just overlook the deficiencies. Previously, I had a 17” Macbook Pro with 4GB of &lt;span class="caps"&gt;RAM&lt;/span&gt; so it was quite a switch going to a 2GB and a 13” screen. Thankfully I have a 24” Dell monitor that I work on most of the time so screen real estate is not an issue.&lt;/p&gt;
+
+
+	&lt;p&gt;One of my favorite pieces on the desk above (other than my iPhone) is the Apple Wireless keyboard. I’ve always used ergonomic keyboards so i was hesitant to switch to something flat but I am in love. When I type on it, I feel like I’m in a beautiful meadow with gazelle’s dancing past me. It’s true.&lt;/p&gt;
+
+
+	&lt;p&gt;I have a pair of Logitech speakers, nothing fancy but they sound good and allow me to occasionally &lt;a href="http://www.last.fm/user/jnunemaker"&gt;crank up the music&lt;/a&gt;. I currently also use a Logitech corded mouse as I am having issues with the responsiveness of my Apple Wireless Mighty Mouse. I would be lost without my iPhone 3G and it truly follows me everywhere I go in my left front pocket. I feel naked when it is not there.&lt;/p&gt;
+
+
+	&lt;p&gt;When I am on the go, I have a pair of &lt;a href="http://addictedtonew.com/archives/254/ears-covered-in-bose/"&gt;Bose around ear headphones&lt;/a&gt;. They are truly the best pair of headphones I have ever owned. Music sounds magical in them.&lt;/p&gt;
+
+
+	&lt;p&gt;For backups, I have a &lt;a href="http://paulstamatiou.com/2007/08/19/review-wd-passport-portable-hard-drive"&gt;Western Digital Passport 120GB&lt;/a&gt;. I use Time Machine and try to backup every couple days.&lt;/p&gt;
+
+
+	&lt;h2&gt;And What Software?&lt;/h2&gt;
+
+
+	&lt;p&gt;Like Alex, I spend most of my time in &lt;a href="http://macromates.com"&gt;Textmate&lt;/a&gt;, &lt;a href="http://www.apple.com/macosx/technology/unix.html"&gt;Terminal&lt;/a&gt; and &lt;a href="http://www.apple.com/safari/"&gt;Safari&lt;/a&gt;. No, I am not jumping on the &lt;a href="http://nubyonrails.com/articles/emacs-emacs"&gt;Emacs bandwagon&lt;/a&gt;. Aesthetic is too important to me. Yes, I said it. Emacs looks ugly to me. Firefox is also ugly. That is all.&lt;/p&gt;
+
+
+	&lt;p&gt;I have a gmail address that I’ve used for several years. It now forwards to my MobileMe account. I use Mail.app and my iPhone to check the MobileMe account and I use Gmail for &lt;span class="caps"&gt;SMTP&lt;/span&gt; so that it backs up all my sent messages as well. I use the inbox for things I need to do as soon as I get time. I have an archive folder that I archive all messages worth keeping and a waiting folder for items that I need to do someday but not right now. All the rest of my mail gets deleted. My inbox rarely gets over 5-10 emails.&lt;/p&gt;
+
+
+	&lt;p&gt;I use &lt;a href="http://www.apple.com/macosx/features/300.html#ical"&gt;iCal&lt;/a&gt; even though I hate it simply because it syncs with my iPhone beautifully. Syncing is also the reason I use Apple’s Address Book. I use &lt;a href="http://www.apple.com/macosx/features/ichat.html"&gt;iChat&lt;/a&gt; for IM (AIM and Jabber) and mostly my iPhone and occasionally the &lt;a href="http://twitter.rubyforge.org/"&gt;command line&lt;/a&gt; for Twitter. To keep up with tweets on the iPhone, I use text messages, &lt;a href="http://www.atebits.com/software/tweetie/"&gt;Tweetie&lt;/a&gt; and &lt;a href="http://www.mustacheinc.com/summizer"&gt;Summizer&lt;/a&gt; (one of my favorite apps), occasionally opening up Twitter’s &lt;a href="http://m.twitter.com"&gt;mobile&lt;/a&gt; version. I use &lt;a href="http://www.apple.com/itunes/"&gt;iTunes&lt;/a&gt; for playing music and &lt;a href="http://www.last.fm/user/jnunemaker"&gt;last.fm&lt;/a&gt; for tracking it.&lt;/p&gt;
+
+
+	&lt;p&gt;I love &lt;a href="http://www.smileonmymac.com/TextExpander/"&gt;TextPander&lt;/a&gt; for email signatures and phone numbers. I use &lt;a href="http://growl.info/"&gt;growl&lt;/a&gt; for iTunes, autotest notifications and various other things. We use &lt;a href="http://www.getdropbox.com/"&gt;DropBox&lt;/a&gt; for sharing files at Ordered List and I often keep current working files there just to have them automatically backed up offsite. I use &lt;a href="http://skitch.com/"&gt;Skitch&lt;/a&gt; for screenshots and &lt;a href="http://store.shinywhitebox.com/home/home.html"&gt;iShowU&lt;/a&gt; for screencasts.&lt;/p&gt;
+
+
+	&lt;p&gt;For tickets, we (Ordered List) use &lt;a href="http://lighthouseapp.com/"&gt;Lighthouse&lt;/a&gt; and are keeping our eye on &lt;a href="http://sifterapp.com/"&gt;Sifter&lt;/a&gt; (even have a paid account because we think it is going to be great, just waiting on an &lt;span class="caps"&gt;API&lt;/span&gt;). For code, I use &lt;a href="http://github.com/jnunemaker"&gt;GitHub&lt;/a&gt; and love it. I use &lt;a href="hoptoadapp.com/"&gt;Hoptoad&lt;/a&gt; for exceptions and &lt;a href="http://railstips.org/2008/9/17/rails-app-monitoring"&gt;New Relic&lt;/a&gt; for performance monitoring. For invoicing, we (Ordered List) use &lt;a href="http://www.freshbooks.com/"&gt;Freshbooks&lt;/a&gt;. It gets the job done. I also like &lt;a href="http://blinksale.com"&gt;Blinksale&lt;/a&gt; for invoicing.&lt;/p&gt;
+
+
+	&lt;p&gt;Probably my most coveted web app is a simple note application that I created. My wife and I use it a lot but it is not really public as of yet. She uses it for recipes and I use it as my digital brain. I keep track of all the millions of ideas that I have in it and use it almost hourly.&lt;/p&gt;
+
+
+	&lt;p&gt;As far as the social internet is concerned, I use &lt;a href="http://twitter.com/jnunemaker"&gt;Twitter&lt;/a&gt;, &lt;a href="http://flickr.com/photos/johnnunemaker/"&gt;Flickr&lt;/a&gt;, and &lt;a href="http://delicious.com/jnunemaker"&gt;Delicious&lt;/a&gt; almost every day.&lt;/p&gt;
+
+
+	&lt;p&gt;Enough about me. What software, hardware and web apps do you use? If you have a blog, post an article and link to it in the comments. If not, a comment with some details will do. I’m curious to see how others go about their business.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=lLcRWEw8"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=wD3xhnid"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=GEYJm1HW"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/WToiCYR_NNs" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/1/5/my-setup-and-software</feedburner:origLink></entry>
+  <entry xml:base="http://railstips.org/">
+    <author>
+      <name>john</name>
+    </author>
+    <id>tag:railstips.org,2009-01-05:8602</id>
+    <published>2009-01-05T07:38:00Z</published>
+    <updated>2009-01-05T07:38:55Z</updated>
+    <category term="Gems" />
+    <category term="command line" />
+    <category term="httparty" />
+    <link href="http://feedproxy.google.com/~r/railstips/~3/P_11y3L9KNM/httparty-goes-commando" rel="alternate" type="text/html" />
+    <title>HTTParty Goes Commando</title>
+<summary type="html">&lt;p&gt;In which I describe the new hot command line interface for HTTParty.&lt;/p&gt;</summary><content type="html">
+            &lt;p&gt;In which I describe the new hot command line interface for HTTParty.&lt;/p&gt;
+&lt;p&gt;Hot of the press is a new feature for &lt;a href="http://railstips.org/2008/7/29/it-s-an-httparty-and-everyone-is-invited"&gt;HTTParty&lt;/a&gt;, everyone’s favorite way of consuming sane web services. Thanks to &lt;a href="http://alexvollmer.com/"&gt;Alex Vollmer&lt;/a&gt;, the party has been extended to your terminal with a sexy command line interface!&lt;/p&gt;
+
+
+	&lt;p&gt;The &lt;span class="caps"&gt;CLI&lt;/span&gt; is available in 0.2.5, which should be on GitHub and RubyForge by the time you read this. If you like the addition, be sure to send Alex (&lt;a href="http://twitter.com/alexvollmer"&gt;@alexvollmer&lt;/a&gt;) a tweet to let him know and thank him. Enough with the gratitude, give me some examples you say!&lt;/p&gt;
+
+
+	&lt;h2&gt;Installation&lt;/h2&gt;
+
+
+&lt;pre&gt;&lt;code&gt;# GitHub
+$ sudo gem install jnunemaker-httparty --source http://gems.github.com
+
+# RubyForge
+$ sudo gem install httparty&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;h2&gt;Examples&lt;/h2&gt;
+
+
+	&lt;p&gt;I use Twitter for a lot of examples, so how about we start with the Twitter public timeline.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ httparty http://twitter.com/statuses/public_timeline.json
+[{"user"=&amp;gt;
+   {"name"=&amp;gt;"sfwineboy",
+    "url"=&amp;gt;"http://www.new.facebook.com/profile.php?id=1401240105",
+    "id"=&amp;gt;"15651761",
+    "description"=&amp;gt;"Chill - Axin",
+    "protected"=&amp;gt;false,
+    "screen_name"=&amp;gt;"sfwineboy",
+    "followers_count"=&amp;gt;8,
+    "location"=&amp;gt;"Los Angeles, CA",
+    "profile_image_url"=&amp;gt;
+     "http://s3.amazonaws.com/twitter_production/profile_images/57533829/a_281078039762fd87b263a939b652626f_normal.jpg"},
+  "favorited"=&amp;gt;false,
+  "truncated"=&amp;gt;false,
+  "text"=&amp;gt;"Chillin in LA in Mar Vista http://loopt.us/VVQu2Q",
+  "id"=&amp;gt;"1096656558",
+  "in_reply_to_status_id"=&amp;gt;nil,
+  "in_reply_to_user_id"=&amp;gt;nil,
+  "source"=&amp;gt;"&amp;lt;a href=\"https://loopt.com\"&amp;gt;Loopt&amp;lt;/a&amp;gt;",
+  "created_at"=&amp;gt;"Mon Jan 05 07:10:43 +0000 2009"},
+  ...
+}]&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;By default, the command line interface to HTTParty gives you a ruby pretty printed object. It doesn’t stop there though. If you want, you can format the output using the &lt;span class="caps"&gt;JSON&lt;/span&gt; gem’s pretty_generate version of &lt;span class="caps"&gt;JSON&lt;/span&gt; or &lt;span class="caps"&gt;REXML&lt;/span&gt;’s attempt at pretty indented xml.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ httparty -f json http://twitter.com/statuses/public_timeline.json
+[
+  {
+    "user": {
+      "name": "Katrin Verclas",
+      "url": "http:\/\/www.mobileactive.org",
+      "id": "3125721",
+      "description": "chica. curious.",
+      "protected": false,
+      "screen_name": "Katrinskaya",
+      "followers_count": 935,
+      "location": "",
+      "profile_image_url": "http:\/\/s3.amazonaws.com\/twitter_production\/profile_images\/65202240\/Photo_95_normal.jpg" 
+    },
+    "favorited": false,
+    "truncated": false,
+    "text": "It is 2 am and insomnia girl is trying hard not to get completely irritated at this shit. Drugs, baby, drugs.",
+    "id": "1096661586",
+    "in_reply_to_status_id": null,
+    "in_reply_to_user_id": null,
+    "source": "&amp;lt;a href=\"http:\/\/www.naan.net\/trac\/wiki\/TwitterFon\"&amp;gt;TwitterFon&amp;lt;\/a&amp;gt;",
+    "created_at": "Mon Jan 05 07:15:38 +0000 2009" 
+  },
+  ...
+ }
+]
+
+$ httparty -f xml "http://whoismyrepresentative.com/whoismyrep.php?zip=46544&amp;output=xml" 
+&amp;lt;result n='1'&amp;gt;
+  &amp;lt;rep name='Joe Donnelly' district='2' office='1218 Longworth' phone='(202) 225-3915' link='http://donnelly.house.gov/' state='IN'/&amp;gt;
+&amp;lt;/result&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;You can also use different request methods, such as post and set headers and junk like that. See the help for more information.&lt;/p&gt;
+
+
+&lt;pre&gt;&lt;code&gt;$ httparty -h
+USAGE: /opt/local/bin/httparty [options] [url]
+    -f, --format [FORMAT]            Body format: plain, json or xml
+    -r, --ruby                       Dump output in Ruby pretty-print format
+    -a, --action [ACTION]            HTTP action: get (default), post, put or delete
+    -d, --data [BODY]                Data to put in request body (prefix with '@' for file)
+    -H, --header [NAME=VALUE]        Additional HTTP headers in NAME=VALUE form
+    -v, --verbose                    If set, print verbose output
+    -h, --help                       Show help documentation&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;p&gt;I think this addition is pretty hot and I’m excited to actually need to try it out. This is, I’m sure, just the first pass of what will be more updates to the &lt;span class="caps"&gt;CLI&lt;/span&gt; of HTTParty, but I can see this completely replacing curl and your browser for testing &lt;span class="caps"&gt;API&lt;/span&gt;’s that you are building (or wrapping). Very cool stuff and much thanks to Alex.&lt;/p&gt;
+          &lt;div class="feedflare"&gt;
+&lt;a href="http://feeds2.feedburner.com/~f/railstips?a=HY81qWKB"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=41" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=NSeREbDs"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=43" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds2.feedburner.com/~f/railstips?a=NurFu1Qj"&gt;&lt;img src="http://feeds2.feedburner.com/~f/railstips?d=50" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds2.feedburner.com/~r/railstips/~4/P_11y3L9KNM" height="1" width="1"/&gt;</content>  <feedburner:origLink>http://railstips.org/2009/1/5/httparty-goes-commando</feedburner:origLink></entry>
+</feed>
