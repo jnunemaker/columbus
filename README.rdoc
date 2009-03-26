@@ -1,6 +1,17 @@
 = columbus
 
-Description goes here.
+Autodiscovers feeds from urls.
+
+= examples
+
+See examples directory. Short example below. 
+  
+  require 'pp'
+  pp Columbus.new('http://www.railstips.org').primary
+  
+  #<struct Columbus::Feed
+   url="http://feeds2.feedburner.com/railstips",
+   title="Railstips Articles">  
 
 == Copyright
 
