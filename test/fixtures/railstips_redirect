@@ -1,0 +1,11 @@
+HTTP/1.0 302 Moved Temporarily
+Date: Thu, 26 Mar 2009 01:18:38 GMT
+Server: Apache
+X-FB-Host: chi-write6
+Location: http://feeds2.feedburner.com/railstips
+Content-Length: 0
+P3P: CP="ALL DSP COR NID CUR OUR NOR"
+Keep-Alive: timeout=30, max=100
+Connection: keep-alive
+Content-Type: text/plain; charset=UTF-8
+

@@ -24,4 +24,13 @@ class ColumbusTest < Test::Unit::TestCase
     ]
   end
   
+  should "follow redirects" do
+    FakeWeb.register_uri(:get, "http://railstips.org/", :string => fixture_file('railstips.html'))
+    FakeWeb.register_uri(:get, "http://feeds.feedburner.com/railstips", :response => fixture_file('railstips_redirect'))
+    FakeWeb.register_uri(:get, "http://feeds2.feedburner.com/railstips", :string => fixture_file('railstips_feedburner.html'))
+    primary = Columbus.new('http://railstips.org').primary
+    primary.url.should == 'http://feeds2.feedburner.com/railstips'
+    primary.title.should == 'Railstips Articles'
+  end
+  
 end
