@@ -14,5 +14,5 @@ class Test::Unit::TestCase
 end
 
 def fixture_file(file)
-  File.read(File.join('fixtures', file))
+  File.read(File.join(File.dirname(__FILE__), 'fixtures', file))
 end
