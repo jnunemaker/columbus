@@ -9,6 +9,7 @@ begin
     gem.email = "nunemaker@gmail.com"
     gem.homepage = "http://github.com/jnunemaker/columbus"
     gem.authors = ["John Nunemaker"]
+    gem.rubyforge_project = 'columbus'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
